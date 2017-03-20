@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        @yield('title', 'Foobooks')
+        @yield('title', 'Foobooks default title')
     </title>
 
     <meta charset='utf-8'>
@@ -14,11 +14,24 @@
 <body>
 
     <header>
-        <img
-        src='http://making-the-internet.s3.amazonaws.com/laravel-foobooks-logo@2x.png'
-        style='width:300px'
-        alt='Foobooks Logo'>
+        <img src='/images/scrabbleimage.jpg' style='width:300px' alt='Scrabble Image'>
     </header>
+
+    <section>
+        @yield('scrabblewordcontent')
+    </section>
+
+    <section>
+        @yield('radiobuttonscontent')
+    </section>
+
+    <section>
+        @yield('includebingocontent')
+    </section>
+
+    <section>
+        @yield('contentacw')
+    </section>
 
     <section>
         @yield('content')

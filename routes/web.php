@@ -38,9 +38,13 @@ return 'welcome';
 #});
 
 
-Route::get('/books/{title}', 'BookController@show');
 #Route::get('/books/{title?}', 'BookController@index');
+Route::get('/books/{title}', 'BookController@show');
+Route::get('/games/{title}', 'GameController@scrabble');
 
+Route::get('/practice', function() {
+    echo config('mail.driver');
+});
 
 
 
