@@ -13,22 +13,13 @@ class BookController extends Controller
 
 {
  
-  /**
-  * GET /books
-  */
-  public function index($title = null)
-  {
-     return 'Here are all the Star Trek books titled '.$title;
-  }
-
-
-#  /**
-#  * GET /books
-#  */
-#  public function show($title = null)
-#  {
-#     return 'Here are all the Star Trek books titled '.$title;
-#  }
+    /**
+    * GET /books
+    */
+    public function index($title = null)
+    {
+       return 'Here are all the Star Trek books titled '.$title;
+    }
 
 
     /**

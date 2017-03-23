@@ -15,8 +15,6 @@ class GameController extends Controller
     
 //
 
-
-
     /**
     * GET
     * /games/{title?}
