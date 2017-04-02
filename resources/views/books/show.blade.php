@@ -13,7 +13,7 @@
 
 @section('content')
     @if($title)
-        <h1>Show booksss: {{ $title }}</h1>
+        <h1>Show books: {{ $title }}</h1>
     @else
         <h1>No book chosen</h1>
     @endif

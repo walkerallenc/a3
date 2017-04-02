@@ -14,7 +14,7 @@
 <body>
 
     <header>
-        <img src='/images/scrabbleimage.jpg' style='width:300px' alt='Scrabble Image'>
+        <img src='/images/scrabbleimage.jpg' style='width:300px' alt='ScrabbleImage'>
     </header>
 
     <section>
@@ -31,6 +31,10 @@
 
     <section>
         @yield('contentacw')
+    </section>
+
+    <section>
+        @yield('title')
     </section>
 
     <section>
