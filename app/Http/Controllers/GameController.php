@@ -20,6 +20,9 @@ class GameController extends Controller
     * /games/{title?}
     */
     public function scrabble($title) {
-        return view('games.scrabble')->with(['title' => $title]);
+           $array = str_split($title);
+           return dump($array); 
+
+#        return view('games.scrabble')->with(['title' => $title]);
     }
 }

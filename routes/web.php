@@ -21,14 +21,17 @@ Route::post('/books/new', 'BookController@storeNewBook');
 #});
 
 Route::get('/', function () {
-return 'welcome';
+return 'Welcome to Allens Scrabble Word Game';
 });
 
 Route::get('/books/search', 'BookController@search');
 
 #Route::get('/books/{title?}', 'BookController@index');
 Route::get('/books/{title}', 'BookController@show');
-Route::get('/games/{title}', 'GameController@scrabble');
+###Route::get('/games/{title}', 'GameController@scrabble');
+
+Route::get('/games/{title}', 'WordValueCalculatorController@scrabble');
+
 
 Route::get('/debugbar', function() {
 
@@ -44,7 +47,7 @@ Route::get('/debugbar', function() {
 });
 
 if(config('app.env') == 'local') {
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 }
 
 
