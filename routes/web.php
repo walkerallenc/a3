@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/games', 'GameController@scrabble');
-Route::get('/games/{title}', 'GameController@scrabble');
+Route::get('/games/scrabble', 'GameController@scrabble');
 
 if(config('app.env') == 'local') {
     Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
