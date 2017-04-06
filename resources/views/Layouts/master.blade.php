@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        @yield('title', 'Foobooks default title')
+        @yield('title', 'Scrabble default title')
     </title>
 
     <meta charset='utf-8'>
@@ -14,28 +14,8 @@
 <body>
 
     <header>
-        <img src='/images/scrabbleimage.jpg' style='width:300px' alt='ScrabbleImage'>
+        <img src='/images/scrabbleimage.jpg' style='width:200px' alt='ScrabbleImage'>
     </header>
-
-    <section>
-        @yield('scrabblewordcontent')
-    </section>
-
-    <section>
-        @yield('radiobuttonscontent')
-    </section>
-
-    <section>
-        @yield('includebingocontent')
-    </section>
-
-    <section>
-        @yield('contentacw')
-    </section>
-
-    <section>
-        @yield('title')
-    </section>
 
     <section>
         @yield('content')
