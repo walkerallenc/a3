@@ -5,14 +5,13 @@
 @endsection
 
 @push('head')
-    <link href="/css/books/show.css" type='text/css' rel='stylesheet'>
+    <link href="/css/acw.css" type='text/css' rel='stylesheet'>
 @endpush
 
 @section('content')
     <form method='GET' action='/games/scrabble'>
-        {{-- csrf_field() --}}
-        <h2>Enter your word here: <input type='text' name='enteredWord' id='enteredWord' value='{{$enteredWord or ''}}'></h2>
-        <br>
+        <h3><input type='text' name='enteredWord' id='enteredWord' value='{{$enteredWord or ''}}'><==Enter your word here</h3>
+        <p class="required">*** this is a required field ***</p>
         <input type='radio' name='multipliercheck' id='single' value='single' {{($multipliercheck=='single' ? 'checked=true' : '') }}>None
         <br>
         <input type='radio' name='multipliercheck' id='double' value='double' {{($multipliercheck=='double' ? 'checked=true' : '') }}>Double word
@@ -24,7 +23,7 @@
         <input type='checkbox' name='includeBingo' {{($includeBingo ? 'CHECKED' : '') }}> Yes
         <br>
         <br>
-        <input type='submit' class='acw.css' value='Calculate word value'>
+        <input type='submit' class='/css/acw.css' value='Calculate scrabble word value'>
     </form>
 
 @if(count($errors) > 0)
@@ -35,7 +34,7 @@
     </ul>
 @else
     @if($enteredWord != null) 
-        <h2>The scrabble word value of "<em>{{ $enteredWord }}</em>" is "<em>{{ $total }}</em>".</h2>
+        <h3>The scrabble word value of "<em>{{ $enteredWord }}</em>" is "<em>{{ $total }}</em>".</h3>
     @endif 
 @endif
 
