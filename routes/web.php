@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/games/scrabble/{title?}', 'GameController@scrabble');
 
 if(config('app.env') == 'local') {
