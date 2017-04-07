@@ -1,3 +1,7 @@
+{{--######################################################################################################--}}
+{{--#                                DWA15-Dynamic Web Applications Assignment #3.                       #--}}          
+{{--######################################################################################################--}}
+
 @extends('layouts.master')
 
 @section('title')
@@ -8,6 +12,9 @@
     <link href="/css/acw.css" type='text/css' rel='stylesheet'>
 @endpush
 
+{{--###############################################################################--}}
+{{--#This section is where the mutiplier and bonus point selections are captured. #--}}          
+{{--###############################################################################--}}
 @section('content')
     <form method='GET' action='/games/scrabble'>
         <h3><input type='text' name='enteredWord' id='enteredWord' value='{{$enteredWord or ''}}'><==Enter your word here</h3>
@@ -26,6 +33,10 @@
         <input type='submit' class='/css/acw.css' value='Calculate scrabble word value'>
     </form>
 
+{{--#################################################################################--}}
+{{--#If validation error are generated, they are diplayed in the section.           #--}}          
+{{--#If validation error are not generated, the calculated word value is displayed. #--}}          
+{{--#################################################################################--}}
 @if(count($errors) > 0)
     <ul>
         @foreach ($errors->all() as $error)

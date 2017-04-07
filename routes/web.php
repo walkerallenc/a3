@@ -1,15 +1,10 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+######################################################################################################
+#                                DWA15-Dynamic Web Applications Assignment #3.                       #          
+######################################################################################################
+###################################################################################################### 
+###The code within the routes file establishes the main route, a logs route and a debugging route.   #
+###################################################################################################### 
 
 Route::get('/games/scrabble/{title?}', 'GameController@scrabble');
 
@@ -18,7 +13,7 @@ if(config('app.env') == 'local') {
 
     Route::get('/debugbar', function() {
 
-        $data = Array('foo' => 'bar');
+        $data = Array('scrabbleword' => 'value');
         Debugbar::info($data);
         Debugbar::info('Current environment: '.App::environment());
         Debugbar::error('Error!');
