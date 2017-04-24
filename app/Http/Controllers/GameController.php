@@ -16,6 +16,20 @@ use Illuminate\Http\Request;
 class GameController extends Controller
 {
  
+
+public function index(Request $request) {
+
+    $enteredWord = $request->input('enteredWord', null);
+    $total=0;
+
+    return view('games.scrabble')->with([
+        'enteredWord' => $enteredWord, 
+        'total' => $total,
+        'multipliercheck' => $request->input('multipliercheck'), 
+        'includeBingo' => $request->has('includeBingo')
+        ]);
+}
+
 ##############################################################################################################
 #This is the scrabble word value calculation function.
 ##############################################################################################################
