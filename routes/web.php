@@ -9,10 +9,11 @@
 ### Route::get('/', 'PracticeController@practice1');
 ### Route::get('/', 'PracticeController@practice2');
 ### Route::get('/', 'PracticeController@practice3');
-Route::get('/', 'PracticeController@practice4');
+### Route::get('/', 'PracticeController@practice4');
+### Route::get('/', 'BookController@index');
 
 
-### Route::get('/', 'GameController@index');
+Route::get('/', 'GameController@index');
 Route::get('/games/scrabble/{title?}', 'GameController@scrabble');
 
 
@@ -79,3 +80,8 @@ if(App::environment('local')) {
     });
 
 };
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index');

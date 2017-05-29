@@ -19,11 +19,11 @@
     <form method='GET' action='/games/scrabble'>
         <h3><input type='text' name='enteredWord' id='enteredWord' value='{{$enteredWord or ''}}'><==Enter your word here</h3>
         <p class="required">*** this is a required field ***</p>
-        <input type='radio' name='multipliercheck' id='single' value='single' {{($multipliercheck=='single' ? 'checked=true' : '') }}>None
+        <input type='radio' name='multipliercheck' id='single' value='single' {{($multipliercheck=='single' ? 'checked' : '') }}>None
         <br>
-        <input type='radio' name='multipliercheck' id='double' value='double' {{($multipliercheck=='double' ? 'checked=true' : '') }}>Double word
+        <input type='radio' name='multipliercheck' id='double' value='double' {{($multipliercheck=='double' ? 'checked' : '') }}>Double word
         <br>
-        <input type='radio' name='multipliercheck' id='triple' value='triple' {{($multipliercheck=='triple' ? 'checked=true' : '') }}>Triple word
+        <input type='radio' name='multipliercheck' id='triple' value='triple' {{($multipliercheck=='triple' ? 'checked' : '') }}>Triple word
         <br>
         <br>
         <label>Include 50 point Bingo</label>
