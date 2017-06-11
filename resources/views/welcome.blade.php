@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        Scrabble word word valuator    
+            Palindrome test
     </head>
     <body>
         <div>
-            Scrabble word
+            Palindrome test
         </div>
     </body>
 </html>

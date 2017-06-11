@@ -2,7 +2,7 @@
 
 
 ######################################################################################################
-#                                DWA15-Dynamic Web Applications Assignment #3.                       #          
+#                                Convention Data Services - Palindrome Test.                         #          
 ######################################################################################################
 
 namespace App\Http\Controllers;
@@ -13,35 +13,38 @@ use Illuminate\Http\Request;
 
 
 
-class GameController extends Controller
+class PalindromeController extends Controller
 {
  
 
 public function index(Request $request) {
 
     $enteredWord = $request->input('enteredWord', null);
+    
+    $cleanedenteredWord = str_replace(' ','',$enteredWord);
+    $enteredWord = str_replace(' ','',$enteredWord);
+    
     $total=0;
 
-    return view('games.scrabble')->with([
-        'enteredWord' => $enteredWord, 
-        'total' => $total,
-        'multipliercheck' => $request->input('multipliercheck'), 
-        'includeBingo' => $request->has('includeBingo')
+    return view('tests.palindrome')->with([
+        'enteredWord' => $enteredWord
+#        'WordAccumulator' => $WordAccumulator, 
         ]);
 }
 
 ##############################################################################################################
 #This is the scrabble word value calculation function.
 ##############################################################################################################
-public function scrabble(Request $request) {
+public function evaluate(Request $request) {
 
 ##############################################################################################################
 #This step validates the scrabble word that is entered 
 #The word is required, is made of letters, is at least 3 characters long and no more than 10 characters long.
 ##############################################################################################################
     $this->validate($request, [
-    'enteredWord' => 'required|alpha|min:3|max:10',
+    'enteredWord' => 'required',
     ]);
+#    'enteredWord' => 'required|alpha_num|min:1',
 
     $searchResults = [];
     $searchTermArray = [];
@@ -54,33 +57,25 @@ public function scrabble(Request $request) {
 #This step obtains the validated "enteredWord" and stores the value.                                         # 
 ##############################################################################################################
     $enteredWord = $request->input('enteredWord', null);
-#    $includeBingo = $request->input('includeBingo', null); 
-
+    $cleanedenteredWord = str_replace(' ','',$enteredWord);
 ##############################################################################################################
 #This "if" condition is stepped into only if "$enteredWord" has a value.                                     #
 ##############################################################################################################
     if($enteredWord) {
 
-           $searchTermArray = str_split($enteredWord);
+           $searchTermArray=array_reverse(str_split($enteredWord));
+
+           $WordAccumulator="";
+
            $total=0;
-           foreach($searchTermArray as $searchTermArrayItem => $searchTermItem) {
-               $lettervaluesRawData = file_get_contents(database_path().'/lettervalues.json');
-               $letters = json_decode($lettervaluesRawData, true);
-               ######################################################################## 
-               ###loop through $searchTermArray letter by letter looking for matches  #
-               ######################################################################## 
-               foreach($letters as $alphabetitem => $letter) {
-                   $match = strtolower($alphabetitem) == strtolower($searchTermItem);
-                   ####################################################################################### 
-                   ###If a letter from the scrabble word that was entered is found in the letters array, #
-                   ###its value  is captured and added to an accumulator variable "$total".              #  
-                   ####################################################################################### 
-                   if($match) {
-                       $searchResults[$alphabetitem] = $letter;
-                       $total = $total+$searchResults[$alphabetitem];
-                }
+           foreach($searchTermArray as $searchTermArrayIndex => $searchTermItem) {
+
+                   $good = $searchTermItem != "";
+                   if($good) {
+                       $searchResults[$searchTermArrayIndex] = $searchTermItem;
+                       $WordAccumulator=$WordAccumulator.$searchResults[$searchTermArrayIndex];
+                   }
             }
-        }
 
         #################################################################################### 
         ###The scrabble word multpliers and bonus points are calculated in the next steps. #
@@ -96,16 +91,31 @@ public function scrabble(Request $request) {
         if($request->input('includeBingo')==true){
             $total=50+$total;
         }
+#dump($enteredWord);
+#dump($cleanedenteredWord);
+#dump($WordAccumulator);
+
+$WordAccumulator = str_replace(' ','',$WordAccumulator);
+
+$palindromeresults="";
+if(strtolower($cleanedenteredWord)==strtolower($WordAccumulator))
+      {      
+          $palindromeresults="This is a palindrome.";          
+      }
+else
+      {
+          $palindromeresults="This is not a palindrome.";          
+      }
+
     } #Loop through enteredWord array 
 
     ######################################################################################  
     ###The step supplies the form values and calculated scrabble word value to the view. #
     ###################################################################################### 
-    return view('games.scrabble')->with([
-        'enteredWord' => $enteredWord, 
-        'total' => $total,
-        'multipliercheck' => $request->input('multipliercheck'), 
-        'includeBingo' => $request->has('includeBingo')
+    return view('tests.palindrome')->with([
+        'enteredWord' => strtolower($enteredWord), 
+        'WordAccumulator' => strtolower($WordAccumulator), 
+        'palindromeresults' => $palindromeresults
         ]);
      
     } # if($enteredWord)

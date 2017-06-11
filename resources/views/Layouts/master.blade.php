@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>
-        @yield('title', 'Scrabble default title')
+        @yield('title', 'Palindrome Test title')
     </title>
 
     <meta charset='utf-8'>
@@ -14,7 +14,7 @@
 <body>
 
     <header>
-        <img src='/images/scrabbleimage.jpg' style='width:200px' alt='ScrabbleImage'>
+     <h2>Palindrome Test</h2>
     </header>
 
     <section>
