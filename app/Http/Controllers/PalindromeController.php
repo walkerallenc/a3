@@ -33,13 +33,13 @@ public function index(Request $request) {
 }
 
 ##############################################################################################################
-#This is the scrabble word value calculation function.
+#This is the palindrome evaluation function.
 ##############################################################################################################
 public function evaluate(Request $request) {
 
 ##############################################################################################################
-#This step validates the scrabble word that is entered 
-#The word is required, is made of letters, is at least 3 characters long and no more than 10 characters long.
+#This step validates the string that is entered 
+#The word is required, is made of letters, is at least 1 character long.
 ##############################################################################################################
     $this->validate($request, [
     'enteredWord' => 'required',
@@ -54,12 +54,17 @@ public function evaluate(Request $request) {
     # will be set to *if* searchTerm is not in the request.
 
 ##############################################################################################################
-#This step obtains the validated "enteredWord" and stores the value.                                         # 
+#This step obtains the validated "enteredWord", removes spaces and stores the value.                                         # 
 ##############################################################################################################
     $enteredWord = $request->input('enteredWord', null);
     $cleanedenteredWord = str_replace(' ','',$enteredWord);
 ##############################################################################################################
-#This "if" condition is stepped into only if "$enteredWord" has a value.                                     #
+#This "if" condition is stepped into only if "$enteredWord" has a value.   
+#The string contents order are reversed using the array_reverse function and are stored as an array.
+#While being processed in a foreach loop character by character, spaces are removed from the original string and
+#reassembled in a WordAccumulator string variable.  The reveresed ordered and original ordered are then compared.
+#If the 2 strings are equal to each other, it is deterined that it is a palindrome. If not equal, they are 
+#not considered a palindrome.                                  
 ##############################################################################################################
     if($enteredWord) {
 
@@ -77,41 +82,23 @@ public function evaluate(Request $request) {
                    }
             }
 
-        #################################################################################### 
-        ###The scrabble word multpliers and bonus points are calculated in the next steps. #
-        #################################################################################### 
-        if($request->input('multipliercheck')=='double'){
-            $total=2*$total;
-        }
+           $WordAccumulator = str_replace(' ','',$WordAccumulator);
 
-        if($request->input('multipliercheck')=='triple'){
-            $total=3*$total;
-        }
+           $palindromeresults="";
+           if(strtolower($cleanedenteredWord)==strtolower($WordAccumulator))
+               {      
+                   $palindromeresults="This is a palindrome.";          
+               }
+           else
+               {
+                    $palindromeresults="This is not a palindrome.";          
+               }
 
-        if($request->input('includeBingo')==true){
-            $total=50+$total;
-        }
-#dump($enteredWord);
-#dump($cleanedenteredWord);
-#dump($WordAccumulator);
+    } 
 
-$WordAccumulator = str_replace(' ','',$WordAccumulator);
-
-$palindromeresults="";
-if(strtolower($cleanedenteredWord)==strtolower($WordAccumulator))
-      {      
-          $palindromeresults="This is a palindrome.";          
-      }
-else
-      {
-          $palindromeresults="This is not a palindrome.";          
-      }
-
-    } #Loop through enteredWord array 
-
-    ######################################################################################  
-    ###The step supplies the form values and calculated scrabble word value to the view. #
-    ###################################################################################### 
+    ###############################################################################################  
+    ###The step supplies the enteredWord, WordAccumulator and palindromeresults values to the view. 
+    ############################################################################################### 
     return view('tests.palindrome')->with([
         'enteredWord' => strtolower($enteredWord), 
         'WordAccumulator' => strtolower($WordAccumulator), 
